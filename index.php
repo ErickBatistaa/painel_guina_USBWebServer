@@ -99,6 +99,8 @@ switch (ENVIRONMENT)
  */
 	$system_path = 'system';
 
+	date_default_timezone_set('GMT');
+
 /*
  *---------------------------------------------------------------
  * APPLICATION DIRECTORY NAME
