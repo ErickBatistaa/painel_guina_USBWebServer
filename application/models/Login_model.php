@@ -3,7 +3,7 @@
     class Login_model extends CI_Model{
         function can_login($email, $password){
             $this->db->where('email', $email);
-            $query = $this->db->get('painel_client');
+            $query = $this->db->get('client');
             if($query->num_rows()>0){
                 foreach($query->result() as $row){
                     if($row->email_verified == 'yes'){
