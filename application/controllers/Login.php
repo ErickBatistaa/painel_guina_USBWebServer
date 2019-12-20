@@ -35,27 +35,39 @@ class Login extends CI_Controller {
   $this->load->model('login_model');
  }
 
+    /*public function index(){
+        $this->load->view('merhaba');
+    }*/
+
  function validation()
  {
+
+
+    //redirect('private_area');
+
   $this->form_validation->set_rules('user_email', 'Email Address', 'required|trim|valid_email');
   $this->form_validation->set_rules('user_password', 'Password', 'required');
   if($this->form_validation->run())
   {
    $result = $this->login_model->can_login($this->input->post('user_email'), $this->input->post('user_password'));
-   if($result == '')
+   if(!$result == '')
    {
+       //echo 'login ok';
     redirect('private_area');
    }
    else
    {
     $this->session->set_flashdata('message',$result);
-    redirect('login');
+    redirect('private_area');
+    //$this->session->load->view('private_area');
    }
   }
   else
   {
    $this->index();
+   //redirect('private_area');
   }
  }
 
+  
 }

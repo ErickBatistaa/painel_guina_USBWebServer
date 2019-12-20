@@ -101,6 +101,8 @@ switch (ENVIRONMENT)
 
 	date_default_timezone_set('GMT');
 
+	ini_set('max_execution_time', 300);
+
 /*
  *---------------------------------------------------------------
  * APPLICATION DIRECTORY NAME

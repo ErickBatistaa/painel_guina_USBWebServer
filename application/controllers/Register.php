@@ -63,21 +63,62 @@ class Register extends CI_Controller {
     <p>Once you click this link your email will be verified and you can login into system.</p>
     <p>Thanks,</p>
     ";
-    $config = array(
+
+    //$uploaddir = 'C:\Users\Mehmet\Downloads';
+    //$uploadfile = $uploaddir . basename($_FILES['userfile']['WhatsApp Image 2019-12-20 at 11.04.52.jpeg']);
+
+   /*echo '<pre>';
+   if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+    echo "Arquivo válido e enviado com sucesso.\n";
+   } else {
+    echo "Possível ataque de upload de arquivo!\n";
+   }
+
+   echo 'Aqui está mais informações de debug:';
+   print_r($_FILES);
+
+   print "</pre>";*/
+
+
+   // Arquivo enviado via formulário
+   /*$path = $_FILES['attachment']['tmp_name']; 
+   $fileType = $_FILES['attachment']['type']; 
+   $fileName = $_FILES['attachment']['name']; */
+
+   // Ou arquivo local
+   /*$path = 'C:\Users\Mehmet\Downloads';
+   $fileType = 'jpg'( $path );
+   $fileName = 'WhatsApp Image 2019-12-20 at 11.04.52'( $path );
+
+   // Pegando o conteúdo do arquivo
+   $fp = fopen( $path, "rb" ); // abre o arquivo enviado
+   $anexo = fread( $fp, filesize( $path ) ); // calcula o tamanho
+   $anexo = chunk_split(base64_encode( $anexo )); // codifica o anexo em base 64
+   fclose( $fp ); // fecha o arquivo*/
+
+
+
+    /*$config = array(
      'protocol'  => 'smtp',
-     'smtp_host' => 'smtp.gmail.com',
-     'smtp_port' => 110,
-     'smtp_user'  => 'teste_erick', 
-     'smtp_pass'  => 'erick0210', 
-     'mailtype'  => 'html',
+     'smtp_host' => 'ssl://mail.guianaturquia.com',
+     'smtp_port'  => 465,
+     'smtp_user'  => 'mailtest@guianaturquia.com', 
+     'smtp_pass'  => 'mail123456', 
+     'mailtype'   => 'html',   
      'charset'    => 'iso-8859-1',
                    'wordwrap'   => TRUE
     );
 
-    //$config = fsockopen('smtp.gmail.com', 465, $errno, $errstr, 10);
+
+
+    $config = fsockopen('mail.guianaturquia.com', 465, $errno, $errstr, 10);
+
+
+
+
     $this->load->library('email', $config);
     $this->email->set_newline("\r\n");
-    $this->email->from('teste_erick@teste.com','Teste_Erick');
+    $this->email->from('mailtest@guianaturquia.com','Teste_Erick');
     $this->email->to($this->input->post('user_email'));
     $this->email->subject($subject);
     $this->email->message($message);
@@ -86,7 +127,45 @@ class Register extends CI_Controller {
      $this->session->set_flashdata('message', 'Check in your email for email verification mail');
      redirect('register');
     }
-   }
+   }*/
+
+        $SMTP_HOST = "mail.guianaturquia.com";
+        $SMTP_USER = "mailtest@guianaturquia.com";
+        $SMTP_PASS = "mail123456";
+        $SMTP_PORT = "587";
+       
+        $this->load->library('email');
+       
+        // Set the default email config and Initialize
+        $config['protocol']  = 'smtp';
+        $config['smtp_host'] = $SMTP_HOST;
+        $config['smtp_user'] = $SMTP_USER;
+        $config['smtp_pass'] = $SMTP_PASS;
+        $config['smtp_port'] = $SMTP_PORT;
+        $config['mailtype']  = 'html';
+               
+        $this->email->initialize($config);
+       
+        $this->email->from('mailtest@guianaturquia.com', 'Teste_Erick');
+        $this->email->to($this->input->post('user_email'));
+        $this->email->subject($subject);
+        $this->email->message($message);
+        //$this->email->anexo($anexo);
+       
+        //if( !$this->CI->email->send())
+        if( !$this->email->send())
+        {
+            $this->index();
+            echo $this->email->print_debugger();
+            return -1;
+        }
+        else
+        {
+           $this->session->set_flashdata('message', 'Check in your email verification mail');
+            //echo "Email sent";
+            redirect('register');
+            return 1;
+        } 
   }
   else
   {
@@ -96,6 +175,59 @@ class Register extends CI_Controller {
 
   }
  }
+
+
+/*function mailtest() {
+
+echo 'Mail test.';*/
+
+
+
+//$this->load->view('teste2');
+		//return view('welcome_message');
+
+		/*$SMTP_HOST = "mail.guianaturquia.com";
+        $SMTP_USER = "mailtest@guianaturquia.com";
+        $SMTP_PASS = "mail123456";
+        $SMTP_PORT = "587";
+       
+        $this->load->library('email');
+       
+        // Set the default email config and Initialize
+        $config['protocol']  = 'smtp';
+        $config['smtp_host'] = $SMTP_HOST;
+        $config['smtp_user'] = $SMTP_USER;
+        $config['smtp_pass'] = $SMTP_PASS;
+        $config['smtp_port'] = $SMTP_PORT;
+        $config['mailtype']  = 'html';
+               
+        $this->email->initialize($config);
+       
+        $this->email->from('mailtest@guianaturquia.com', 'test');
+        $this->email->to('miiscan@gmail.com');
+        $this->email->subject('Konu');
+        $this->email->message('Merhaba erick nasılsın. :) todo bem erick.? ');
+       
+        //if( !$this->CI->email->send())
+        if( !$this->email->send())
+        {
+            echo $this->email->print_debugger();
+            return -1;
+        }
+        else
+        {
+            echo "Email sent";
+            return 1;
+        } */
+           
+
+
+
+
+}
+
+
+
 
  function verify_email()
  {

@@ -6,8 +6,10 @@
             $query = $this->db->get('client');
             if($query->num_rows()>0){
                 foreach($query->result() as $row){
-                    if($row->email_verified == 'yes'){
-                        $store_password = $this->encrypt->decode($row->password);
+                    if($row->is_email_verified == 'yes'){
+                       
+                        $store_password = $this->encryption->decode($row->password);
+
                         if($password == $store_password){
                             $this->session->set_userdata('id', $row->id);
                         }else{
@@ -16,6 +18,8 @@
                         }
                         else{
                             return 'Primeiro, verifique seu endereco de email';
+                           // redirect('private_area');
+                            //$this->load->view('teste_private_area');
                         }
                     }
                 }

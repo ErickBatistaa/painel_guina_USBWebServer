@@ -13,16 +13,16 @@
         <div class="panel panel-default">
             <div class="panel-heading">Login</div>
             <div class="panel-body">
-                <?php
+              <?php   
                 if($this->session->flashdata('message'))
                 {
                     echo '
                     <div class="alert alert-success">
-                        '.$this->session->flashdata("message").'
+                        '.$this->session->flashdata('message').'
                     </div>
                     ';
                 }
-                ?>
+                ?> 
                 <form method="post" action="<?php echo base_url(); ?>login/validation">
                     <div class="form-group">
                         <label>Enter Email Address</label>
