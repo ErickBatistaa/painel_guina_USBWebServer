@@ -31,5 +31,10 @@ class Welcome extends CI_Controller {
 		$this->load->view('teste2');
 	}
 
+	public function crud(){
+		$this->load->view('crud_');
+	}
+	
+
 
 }
