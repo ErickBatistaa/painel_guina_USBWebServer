@@ -56,13 +56,12 @@ class Register extends CI_Controller {
    //redirect('login');
    if($id > 0)
    {
-    $subject = "Please verify email for login";
-    $message = "
-    <p>Hi ".$this->input->post('user_name')."</p>
-    <p>This is email verification mail from Codeigniter Login Register system. For complete registration process and login into system. First you want to verify you email by click this <a href='".base_url()."register/verify_email/".$verification_key."'>link</a>.</p>
-    <p>Once you click this link your email will be verified and you can login into system.</p>
-    <p>Thanks,</p>
-    ";
+    $subject = "FELIZ NATAL !!!";
+    //$message = "";
+     
+
+    
+
 
     //$uploaddir = 'C:\Users\Mehmet\Downloads';
     //$uploadfile = $uploaddir . basename($_FILES['userfile']['WhatsApp Image 2019-12-20 at 11.04.52.jpeg']);
@@ -146,11 +145,12 @@ class Register extends CI_Controller {
                
         $this->email->initialize($config);
        
-        $this->email->from('mailtest@guianaturquia.com', 'Teste_Erick');
+        $this->email->from('mailtest@guianaturquia.com', 'Guia na Turquia');
         $this->email->to($this->input->post('user_email'));
         $this->email->subject($subject);
         $this->email->message($message);
         //$this->email->anexo($anexo);
+        $this->email->attach('file:///C:/Users/Mehmet/Downloads/bulten.html', 'inline');
        
         //if( !$this->CI->email->send())
         if( !$this->email->send())
