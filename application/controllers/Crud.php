@@ -9,14 +9,6 @@
             $this->load->view('crud_');
         
         }
-    
-        /*public function __construct(){
-            
-            parent::__construct();
-            
-            $this->load->model('Crud_model');
-        
-        }*/
 
         function create(){
 
