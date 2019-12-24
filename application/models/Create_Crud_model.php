@@ -8,10 +8,15 @@
         
         function insert($data){
 
-                $this->db->insert('templates', $data);
-                return $this->db->insert_id();
+            //$createdDate = date('Y-m-d H:i:s');
+            $this->db->insert('templates', $data);
+            return $this->db->insert_id();
 
         }
+
+        //$createdDate = date('Y-m-d H:i:s');
+        //$query = "insert into 'templates' ('createdDate') values ('".$createdDate."')";
+       // $this->db->insert('templates', $createdDate);
 
         function verify_create($key){
 

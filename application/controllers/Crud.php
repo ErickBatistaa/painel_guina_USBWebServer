@@ -27,6 +27,10 @@
             $this->load->view('Delete_CRUD');
 
         }
+
+        function mostrar_templates(){
+            $this->load->view('Show_CRUD'); 
+        }
     
     }  
 

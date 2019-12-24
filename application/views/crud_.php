@@ -47,6 +47,14 @@
                         
 
                     </div>
+
+                   <!-- <div class = "form-group"> -->    
+
+                        <!-- <input type="submit" name="update" value="Update" class="btn btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                       <!-- <a href="<?php echo base_url(); ?>crud/mostrar_templates">Mostrar templates</a> -->
+                        
+
+                    <!-- </div> -->
                         
 
                     <div class = "form-group">
@@ -56,7 +64,120 @@
                         
 
                     </div>
+                        
+                    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Templates</h2>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Conteúdo</th>
+    <th>Tipo</th>
+    <th>Numeração</th>
+  </tr>
+  <tr>
+    <td>
+
+    <?php
+
+        $query = $this->db->query('SELECT * FROM templates');
+
+        foreach ($query->result_array() as $row)
+        {
+                echo $row['header'].'<br>'; 
+        }
+
+
+    ?>
+
+    </td>
+        <td>
+    <?php
+
+    $query = $this->db->query('SELECT * FROM templates');
+
+    foreach ($query->result_array() as $row)
+    {
+        echo $row['content'].'<br>'; 
+    }
+
+
+
+?>
+
+</td>
+<td>
+<?php
+
+$query = $this->db->query('SELECT * FROM templates');
+
+foreach ($query->result_array() as $row)
+{
+    echo $row['type'].'<br>'; 
+}
+
+
+
+?>
+</td>
+<td>
+<?php
+
+$query = $this->db->query('SELECT * FROM templates');
+
+foreach ($query->result_array() as $row)
+{
+    echo $row['createdUser'].'<br>'; 
+}
+
+?>
+</td>
+  </tr>
+  <!--<tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+  <tr>
+    <td>Ernst Handel</td>
+    <td>Roland Mendel</td>
+    <td>Austria</td>
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>Helen Bennett</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Laughing Bacchus Winecellars</td>
+    <td>Yoshi Tannamuri</td>
+    <td>Canada</td>
+  </tr>
+  <tr>
+    <td>Magazzini Alimentari Riuniti</td>
+    <td>Giovanni Rovelli</td>
+    <td>Italy</td>
+  </tr>-->
+</table>
                         <!--<a href="<?php echo base_url(); ?>register">Register</a>-->
                     
                 </form>

@@ -20,25 +20,40 @@
 
         function validation(){
             
-            $this->form_validation->set_rules('user_header', 'Nome', 'required|trim');
-            $this->form_validation->set_rules('user_content', 'Conteudo', 'required');
+         $this->form_validation->set_rules('header', 'Nome', 'required|trim');
+         $this->form_validation->set_rules('content', 'Conteudo', 'required');
+         $this->form_validation->set_rules('type', 'Tipos_templates', 'required');
+          
+         
+          
+          
             if($this->form_validation->run()){
                 $data = array(
-                    'Nome' => $this->input->post('user_name'),
-                    'Conteudo' => $this->input->post('user_content')
+                    'header' => $this->input->post('header'),
+                    'content' => $this->input->post('content'),
+                    'type' => $this->input->post('type')
+                    //'createdDate' =>$this->input->date('Y-m-d H:i:s')   
                 );
+
+                
             $createdUser = $this->Create_Crud_model->insert($data);
-            if($createdUser > 0){
-                if($this->insert->send()){
-                    redirect('register');
-                    return -1;
-                }else{
-                    $this->session->set_flashdata('message', 'teste ok');
-                    redirect('Crud');
-                    return 1;
-                }
+            
+            
+
+            //redirect('crud/create');
+
+            if($createdUser > 0){          
+                //if($this->session->set_flashdata();
+                $this->session->set_flashdata('message', 'Template registrado com sucesso !!!');     
+                redirect('crud/create');
+                return -1;
+            }else{
+                $this->session->set_flashdata('message', 'teste ok');
+                redirect('register');
+                return 1;
             }
             }else{
+              //  redirect('kaydedilemedi.');
                 $this->index();
             }
             }
