@@ -29,7 +29,9 @@
         }
 
         function mostrar_templates(){
-            $this->load->view('Show_CRUD'); 
+
+            $this->load->view('Show_CRUD');
+             
         }
     
     }  

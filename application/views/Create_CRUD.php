@@ -57,7 +57,7 @@
                        <!--<form action="envia_template.php" method="post" enctype="multipart/form-data"> <input type="file" name="Arquivo" id="Arquivo"><br> <input type="submit" value="Enviar"> <input type="reset" value="Apagar">-->
 
                      
-                       <textarea name="content" class="form-control" value="<?php echo set_value('content'); ?>" /> </textarea>
+                       <textarea name="content" class="form-control" value="<?php echo set_value('content'); ?>"  </textarea>
 
 
                       
@@ -73,7 +73,7 @@
 
                     <div class = "form-group">
                         <!--<input type="submit" name="create" value="Create" class="btn btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> 
-                        <a href="<?php echo base_url(); ?>crud">Mostrar templates</a>
+                        <a href="<?php echo base_url(); ?>crud">Mostrar templates </a>
                     </div>    
 
                     
