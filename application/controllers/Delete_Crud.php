@@ -18,18 +18,31 @@
 
         }
 
-        function validation(){
+        function validation($ID){
 
-            //redirect('register');
+            //  redirect('register');
 
+            $this->form_validation->set_rules('ID', 'ID', 'required|trim');
 
-            
+            if($this->form_validation->run()){
+
+                $ID = array(
+                    'ID' => $this->input->post('ID')
+                );
+
+            }
             /*$this->db->where('ID',  $this->input->post('ID'));
             $this->db->delete('templates');*/
 
-            $this->session->set_flashdata('message', 'teste');
-            redirect('crud/delete/validation');
-            
+            $teste_final = $this->Delete_Crud_model->delete($ID);
+
+            if($teste_final == true){
+                $this->session->set_flashdata('message', 'Template excluido com sucesso !!!');
+                redirect('crud');
+                return 1;
+            }
+
+
          /*$this->form_validation->set_rules('header', 'Nome', 'required|trim');
          $this->form_validation->set_rules('content', 'Conteudo', 'required|trim');
          $this->form_validation->set_rules('type', 'Tipos_templates', 'required|trim');

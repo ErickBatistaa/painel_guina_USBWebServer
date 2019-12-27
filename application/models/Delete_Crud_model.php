@@ -9,7 +9,7 @@
         function delete($ID){
 
             //$createdDate = date('Y-m-d H:i:s');
-            $this->db->where('ID',  $this->input->post('ID'));
+            $this->db->where('ID', $ID);
             return $this->db->delete('templates');
         }
     }

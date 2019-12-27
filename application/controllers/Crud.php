@@ -24,6 +24,13 @@
 
         function delete(){
 
+
+            /*$this->Delete_Crud_model->delete($id);
+
+            $this->session->set_flashdata('msg', 'deleted');
+        
+            redirect('crud');*/
+
             $this->load->view('Delete_CRUD');
 
         }
@@ -31,7 +38,7 @@
         function mostrar_templates(){
 
             $this->load->view('Show_CRUD');
-             
+
         }
     
     }  

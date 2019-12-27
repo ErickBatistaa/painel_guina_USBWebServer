@@ -40,13 +40,13 @@
                     </div>    
 
 
-                    <div class = "form-group">    
+                   <!-- <div class = "form-group"> -->   
 
                        <!-- <input type="submit" name="update" value="Update" class="btn btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-                        <a href="<?php echo base_url(); ?>crud/update">Update</a>
+                        <!--<a href="<?php echo base_url(); ?>crud/update">Update</a>-->
                         
 
-                    </div>
+                    <!--</div>-->
 
                    <!-- <div class = "form-group"> -->    
 
@@ -57,14 +57,16 @@
                     <!-- </div> -->
                         
 
-                    <div class = "form-group">
+                   <!-- <div class = "form-group">-->
                     
                        <!-- <input type="submit" name="delete" value="Delete" class="btn btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-                        <a href="<?php echo base_url(); ?>crud/delete">Delete</a>
+                        <!--<a href="<?php echo base_url(); ?>crud/delete">Delete</a>
                         
 
-                    </div>
-                        
+                    </div>-->
+                    
+
+                    <head>    
                     <style>
 table {
   font-family: arial, sans-serif;
@@ -73,14 +75,27 @@ table {
 }
 
 td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+  border: 1px solid #080808;
+  text-align: center;
+  padding: 2px;
 }
 
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+label{
+      margin: center
+      width: 20px;
+      height:2%;
+      font:18px Lucida;
+      float:center;
+    }
+      label input{
+        float: center;`
+    }
+
+
 </style>
 </head>
 <body>
@@ -93,8 +108,34 @@ tr:nth-child(even) {
     <th>Conteúdo</th>
     <th>Tipo</th>
     <th>Numeração</th>
+    <th>Ações</th>
+    <th>Ações</th>
   </tr>
   <tr>
+    <!--<td>
+
+         
+
+          /*$query = $this->db->query('SELECT * FROM templates');
+
+          foreach ($query->result_array() as $row){ 
+            
+          //  echo '<label><input type="checkbox">'.'<br>'.'<hr/></label>';
+
+          // echo $row['ID']. '<input type="checkbox">'.'<br>'.'<hr/>';
+
+            echo $row['ID']. '<input type="checkbox" name = "setar" value = "botao">'.'<br>'.'<hr/>';
+            
+
+          }*/
+
+          
+          <form action = 'Delete_Crud/validation'>
+            <input type = "submit" name = "teste" value = "botao">
+          </form>
+
+        </td>-->
+
     <td>
 
     <?php
@@ -103,7 +144,7 @@ tr:nth-child(even) {
 
         foreach ($query->result_array() as $row)
         {
-                echo $row['header'].'<br>'; 
+                echo $row['header'].'<br>'.'<hr/>'; 
         }
 
 
@@ -117,7 +158,7 @@ tr:nth-child(even) {
 
     foreach ($query->result_array() as $row)
     {
-        echo $row['content'].'<br>'; 
+        echo $row['content'].'<br>'.'<hr/>'; 
     }
 
 
@@ -132,7 +173,7 @@ $query = $this->db->query('SELECT * FROM templates');
 
 foreach ($query->result_array() as $row)
 {
-    echo $row['type'].'<br>'; 
+    echo $row['type'].'<br>'.'<hr/>'; 
 }
 
 
@@ -146,12 +187,61 @@ $query = $this->db->query('SELECT * FROM templates');
 
 foreach ($query->result_array() as $row)
 {
-    echo $row['createdUser'].'<br>'; 
+    echo $row['ID'].'<br>'.'<hr/>'; 
 }
 
 ?>
 </td>
+<td>
+<?php
+
+    $query = $this->db->query('SELECT * FROM templates');
+
+    foreach ($query->result_array() as $row)
+    {
+       
+       echo anchor('Delete_Crud/validation/'.$row['ID'], 'Delete').'<br>'.'<hr/>';    
+      
+       //echo anchor('Create_Crud/validation/'.$row['ID'], 'Create');
+
+       /*echo anchor($row['id'], array(
+          'Delete_Crud/validation/', 'Delete',
+          'Create_Crud/validation/', 'Create'
+       ));*/
+
+    }
+
+    
+
+?>
+</td>
+
+<td>
+<?php
+
+    $query = $this->db->query('SELECT * FROM templates');
+
+    foreach ($query->result_array() as $row)
+    {
+       
+       //echo anchor('Delete_Crud/validation/'.$row['ID'], 'Delete').'<br>'.'<hr/>';    
+      
+       echo anchor('Update_Crud/editar/'.$row['ID'], 'Update').'<br>'.'<hr/>';
+
+       /*echo anchor($row['id'], array(
+          'Delete_Crud/validation/', 'Delete',
+          'Create_Crud/validation/', 'Create'
+       ));*/
+
+    }
+
+    
+
+?>
+</td>
+
   </tr>
+
   <!--<tr>
     <td>Centro comercial Moctezuma</td>
     <td>Francisco Chang</td>
@@ -178,6 +268,10 @@ foreach ($query->result_array() as $row)
     <td>Italy</td>
   </tr>-->
 </table>
+
+    
+
+
                         <!--<a href="<?php echo base_url(); ?>register">Register</a>-->
                     
                 </form>

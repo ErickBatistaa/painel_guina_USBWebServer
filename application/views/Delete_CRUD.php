@@ -81,6 +81,19 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+label{
+      margin: center
+      width: 20px;
+      height:2%;
+      font:18px Lucida;
+      float:center;
+    }
+      label input{
+        float: center;`
+    }
+
+
 </style>
 </head>
 <body>
@@ -89,6 +102,7 @@ tr:nth-child(even) {
 
 <table>
   <tr>
+    <th> </th>
     <th>Nome</th>
     <th>Conteúdo</th>
     <th>Tipo</th>
@@ -96,6 +110,30 @@ tr:nth-child(even) {
     <th>Ações</th>
   </tr>
   <tr>
+    <td>
+
+        <?php 
+
+          $query = $this->db->query('SELECT * FROM templates');
+
+          foreach ($query->result_array() as $row){ 
+            
+          //  echo '<label><input type="checkbox">'.'<br>'.'<hr/></label>';
+
+          // echo $row['ID']. '<input type="checkbox">'.'<br>'.'<hr/>';
+
+            echo $row['ID']. '<input type="checkbox" name = "setar" value = "botao">'.'<br>'.'<hr/>';
+            
+
+          }
+
+          ?>
+          <form action = 'Delete_Crud/validation'>
+            <input type = "submit" name = "teste" value = "botao">
+          </form>
+
+        </td>
+
     <td>
 
     <?php
@@ -159,7 +197,6 @@ foreach ($query->result_array() as $row)
 
     foreach ($query->result_array() as $row)
     {
-       
        
        echo anchor('Delete_Crud/validation/'.$row['ID'], 'Delete').'<br>'.'<hr/>';
       //  echo form_open('Delete_Crud/validation').'<button type="submit" class="btn btn-danger" name = "botao" value = "botao">Deletar</button>'.'<br>'.'<hr/>';
