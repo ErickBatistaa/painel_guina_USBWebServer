@@ -13,16 +13,29 @@
             <div class="panel-heading">Create, Update, Delete templates</div>
             <div class="panel-body">
 
-                    <?php echo form_open('Update_Crud/alterar'); ?>
+            <form method="post" action="<?php echo base_url('Update_Crud/alterar/'.@$item->id);?>">
+            <?php
+
+
+                if ($this->session->flashdata('errors')){
+                    echo '<div class="alert alert-danger">';
+                    echo $this->session->flashdata('errors');
+                    echo "</div>";
+                }   
+
+
+            ?>
+
+                    <div class = "row">
                     <div class="form-group">
                         <label>Nome do arquivo</label>
-                        <input type="text" name="header" class="form-control" value = "<?=@$dados->header?> " />
+                        <input type="text" name="header" class="form-control" value = "<?=@$item->header?> " />
                         <span class="text-danger"><?php echo form_error('header'); ?></span>
                     </div>
 
                     <div class = "form-group">
                         <label>Tipos de template</label>
-                        <select id = tiposTemp name="type" value = "<?=@$dados->type?>">
+                        <select id = tiposTemp name="type" value = "<?php echo $item->type;?>" >
                             <option>Selecione um tipo de template</option>
                             <option value = "celebracao">Celebração</option>
                             <option value = "noticia">Notícia</option>
@@ -34,7 +47,7 @@
 
                     <div class = "form-group">
                         <label>Conteúdo</label>                     
-                            <textarea name="content" class="form-control" value="<?=@$dados->content?>"></textarea>
+                            <textarea name="content" class="form-control" value="<?php echo @$item->content;?>"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-danger">Save</button><hr/>
@@ -48,6 +61,7 @@
             
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>

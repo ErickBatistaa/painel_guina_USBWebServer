@@ -6,6 +6,8 @@
 
         public function index(){
 
+
+            $data['data'] = $this->update_Crud_model->get_Update_CRUD();
             $this->load->view('Update_CRUD');
             
         }
@@ -46,7 +48,7 @@
         }
     }*/
 
-    function editar($up){
+   /* function editar($up){
 
         $data['dados'] = $this->Update_Crud_model->editar($up);
 //        redirect('Update_CRUD');
@@ -85,7 +87,7 @@
             $data['type'] = $this->input->post('type');
          }*/
 
-         if($this->form_validation->run()){
+        /* if($this->form_validation->run()){
             $data = array(
                 'ID' => $this->input->post('ID'),
                 'header' => $this->input->post('header'),
@@ -101,7 +103,7 @@
 
                 $this->session->set_flashdata('message', 'Template atualizado com sucesso !!!');
                 redirect('crud');
-            }
+            }*/
 
 
            /* if($this->form_validation->run()){
@@ -125,7 +127,119 @@
             }
 
          }*/
-        }
+    
+         /*public function edit($id = null){
+        
+            
+            $regras = array(
+		        array(
+		                'field' => 'nome',
+		                'label' => 'Nome',
+		                'rules' => 'required'
+		        ),
+		        array(
+		                'field' => 'telefone',
+		                'label' => 'telefone',
+		                'rules' => 'required'		                
+		        ),
+		        array(
+		                'field' => 'email',
+		                'label' => 'E-mail',
+		                'rules' => 'required|valid_email'
+		        ),
+		        array(
+		                'field' => 'observacoes',
+		                'label' => 'Observações',
+		                'rules' => 'required'
+		        )
+		);
+		
+		$this->form_validation->set_rules($regras);
+ 
+		if ($this->form_validation->run() == FALSE) {
+			$variaveis['titulo'] = 'Novo Registro';
+			$this->load->view('v_cadastro', $variaveis);
+		} else {
+			
+			$id = $this->input->post('id');
+			
+			$dados = array(
+			
+				"nome" => $this->input->post('nome'),
+				"telefone" => $this->input->post('telefone'),
+				"email" => $this->input->post('email'),
+				"observacoes" => $this->input->post('observacoes')
+			
+			);
+			if ($this->m_cadastros->store($dados, $id)) {
+				$variaveis['mensagem'] = "Dados gravados com sucesso!";
+				$this->load->view('v_sucesso', $variaveis);
+			} else {
+				$variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
+				$this->load->view('errors/html/v_erro', $variaveis);
+			}
+				
+		}
+	}
 
-    }
+
+            if ($id) {
+                
+                $cadastros = $this->m_cadastros->get($id);
+                
+                if ($cadastros->num_rows() > 0 ) {
+                    $variaveis['titulo'] = 'Edição de Registro';
+                    $variaveis['id'] = $cadastros->row()->id;
+                    $variaveis['nome'] = $cadastros->row()->nome;
+                    $variaveis['telefone'] = $cadastros->row()->telefone;
+                    $variaveis['email'] = $cadastros->row()->email;
+                    $variaveis['observacoes'] = $cadastros->row()->observacoes;
+                    $this->load->view('v_cadastro', $variaveis);
+                } else {
+                    $variaveis['mensagem'] = "Registro não encontrado." ;
+                    $this->load->view('errors/html/v_erro', $variaveis);
+                }
+                
+            }*/
+            
+        
+            public function editar($id)
+   {
+       $item = $this->Update_Crud_model->editar($id);
+
+
+       $this->load->view('Update_CRUD');
+       
+   }
+
+
+   /**
+    * Update Data from this method.
+    *
+    * @return Response
+   */
+   public function alterar($id)
+   {
+        $this->form_validation->set_rules('header', 'Nome', 'required|trim');
+        $this->form_validation->set_rules('content', 'Conteudo', 'required|trim');
+        $this->form_validation->set_rules('type', 'Tipos_templates', 'required|trim');
+
+
+        if ($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('errors', validation_errors());
+            redirect('crud/editar'.$id);
+        }else{ 
+          $this->session->set_flashdata('message', 'Template atualizado com sucesso !!!');     
+          $this->Update_Crud_model->update();
+          redirect('crud');
+        }
+   }
+        
+        }
+    
+    
+    
+        
+
+    
 ?>  
