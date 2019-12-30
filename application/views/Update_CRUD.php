@@ -30,11 +30,6 @@
                             <option value = "anuncio">Anúncio</option>
                         </select>
                     </div>
-
-                    <?php print_r($dados);?>
-
-                    <?php echo $dados->header.'---'?>
-
                     
 
                     <div class = "form-group">

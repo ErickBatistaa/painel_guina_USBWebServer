@@ -65,15 +65,15 @@
    
     }
 
-    function alterar(){
+    function alterar($data){
 
-        $this->form_validation->set_rules('header', 'Nome', 'required|trim');
+         $this->form_validation->set_rules('header', 'Nome', 'required|trim');
          $this->form_validation->set_rules('content', 'Conteudo', 'required|trim');
          $this->form_validation->set_rules('type', 'Tipos_templates', 'required|trim');
             
          //echo "teste";
            
-         if($this->form_validation->run() == FALSE){
+       /* if($this->form_validation->run()){
             
             $this->editar($this->input->post('id'));
 
@@ -83,16 +83,49 @@
             $data['header'] = $this->input->post('header');
             $data['content'] = $this->input->post('content');
             $data['type'] = $this->input->post('type');
-         }
-            if($this->Update_Crud_model->alterar($data)==true){
+         }*/
+
+         if($this->form_validation->run()){
+            $data = array(
+                'ID' => $this->input->post('ID'),
+                'header' => $this->input->post('header'),
+                'content' => $this->input->post('content'),
+                'type' => $this->input->post('type')
+                //'createdDate' =>$this->input->date('Y-m-d H:i:s')   
+        );
+        }
+
+        $teste_final = $this->Update_Crud_model->update($data);
+
+            if($teste_final == true){
 
                 $this->session->set_flashdata('message', 'Template atualizado com sucesso !!!');
                 redirect('crud');
-
             }
 
-         }
+
+           /* if($this->form_validation->run()){
+                $data = array(
+                    'ID' => $this->input->post('ID'),
+                    'header' => $this->input->post('header'),
+                    'content' => $this->input->post('content'),
+                    'type' => $this->input->post('type')
+                    //'createdDate' =>$this->input->date('Y-m-d H:i:s')   
+            );
+            }
+                echo "TESTE !!!";
+
+            if(@$data > 0){          
+                //if($this->session->set_flashdata();
+                $this->session->set_flashdata('message', 'Template atualizado com sucesso !!!');     
+                redirect('crud/create');
+                return -1;
+            }else{
+                echo "ERRO !!!";
+            }
+
+         }*/
         }
 
-    
+    }
 ?>  

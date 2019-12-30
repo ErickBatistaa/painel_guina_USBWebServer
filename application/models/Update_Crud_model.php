@@ -15,6 +15,8 @@
            $this->db->from('templates');
       
            $this->db->where('ID', $up);
+
+           //$this->db->query('SELECT * FROM templates');
       
            $query = $this->db->get();
       
@@ -24,11 +26,20 @@
             
         }
 
-        function alterar($data){
+        function update($data){
 
-            $this->db->where('id', $data['id']);
-            $this->db->set($data);
-            return $this->db->update('templates');
+            /*$this->db->where('id', $data['dados']);
+            $this->db->set('header', $data['header']);
+            $this->db->set('type', $data['type']);
+            $this->db->set('content', $data['content']);
+            return $this->db->update('templates');*/
+            $this->db->where('ID', $this->input->post('ID'));
+           
+            $this->db->set('header', $data);
+            $this->db->set('type', $data);
+            $this->db->set('content', $data);
+           
+            return $this->db->update('templates', $data);
 
         }
     }
